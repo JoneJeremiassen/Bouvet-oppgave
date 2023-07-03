@@ -6,7 +6,5 @@
         public string Name { get; set; }
         public string Description { get; set; }
         public string ProjectManager { get; set; }
-
-        public ICollection<Epic> Epics { get; set; }
     }
 }

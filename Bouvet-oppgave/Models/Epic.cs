@@ -6,9 +6,7 @@
         public string Name { get; set; }
         public string Description { get; set; }
 
+        // Foreign key
         public int ProjectId { get; set; }
-        public Project Project { get; set; }
-
-        public ICollection<ProjectTask> Tasks { get; set; }
     }
 }

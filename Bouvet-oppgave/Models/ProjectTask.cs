@@ -7,7 +7,7 @@
         public string Description { get; set; }
         public string Responsible { get; set; }
 
+        // Foreign key
         public int EpicId { get; set; }
-        public Epic Epic { get; set; }
     }
 }

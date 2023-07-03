@@ -16,10 +16,10 @@ namespace Bouvet_oppgave.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "7.0.8")
+                .HasAnnotation("ProductVersion", "6.0.18")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
-            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
             modelBuilder.Entity("Bouvet_oppgave.Models.Epic", b =>
                 {
@@ -27,7 +27,7 @@ namespace Bouvet_oppgave.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -42,8 +42,6 @@ namespace Bouvet_oppgave.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ProjectId");
-
                     b.ToTable("Epics");
                 });
 
@@ -53,7 +51,7 @@ namespace Bouvet_oppgave.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -78,7 +76,7 @@ namespace Bouvet_oppgave.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -97,41 +95,7 @@ namespace Bouvet_oppgave.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("EpicId");
-
                     b.ToTable("ProjectTasks");
-                });
-
-            modelBuilder.Entity("Bouvet_oppgave.Models.Epic", b =>
-                {
-                    b.HasOne("Bouvet_oppgave.Models.Project", "Project")
-                        .WithMany("Epics")
-                        .HasForeignKey("ProjectId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Project");
-                });
-
-            modelBuilder.Entity("Bouvet_oppgave.Models.ProjectTask", b =>
-                {
-                    b.HasOne("Bouvet_oppgave.Models.Epic", "Epic")
-                        .WithMany("Tasks")
-                        .HasForeignKey("EpicId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Epic");
-                });
-
-            modelBuilder.Entity("Bouvet_oppgave.Models.Epic", b =>
-                {
-                    b.Navigation("Tasks");
-                });
-
-            modelBuilder.Entity("Bouvet_oppgave.Models.Project", b =>
-                {
-                    b.Navigation("Epics");
                 });
 #pragma warning restore 612, 618
         }
